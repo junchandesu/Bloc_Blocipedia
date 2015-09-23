@@ -11,7 +11,7 @@
 <div class="container">
   <div class="nav nav-tabs">
     <li><%= link_to "Bloccit", root_path %></li>
-
+    <li><%= link_to "Wikis", wikis_path %></li>
 	 <div class="pull-right">
 		<% if current_user %> 
 			<%= current_user.name || current_user.email %> is signed in! <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
@@ -21,7 +21,7 @@
    </div>
   </div> 
 
- <% if flash[:notice] %>
+  <% if flash[:notice] %>
      <div class="alert alert-success">
        <button type="button" class="close" data-dismiss="alert">&times;</button>
        <%= flash[:notice] %>

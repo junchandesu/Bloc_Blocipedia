@@ -1,0 +1,17 @@
+
+<h3>Titlte: <%= @wiki.title %></h3>
+<h3>Body: <%= @wiki.body %></h3>
+<% if @wiki.private %>
+	<i>Private wiki</i>
+<% else %>
+	<i>publicly viewed wiki</i>
+<% end %>
+<% if policy(@wiki).edit? %>
+| <%= link_to "EDIT", edit_wiki_path %> 
+<% end %>
+<% if policy(@wiki).destroy? %>
+| <%= link_to "DELETE", wiki_path, method: :delete %> |
+<% end %>
+<br/>
+<br/>
+<p><%= link_to "Create a new wiki", new_wiki_path, class: 'label label-info' %></p>

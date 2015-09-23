@@ -28,7 +28,12 @@ gem 'bootstrap-sass'
 gem 'devise'
 # handle sensitive data
 gem 'figaro', '1.0'
-
+# Authorization
+gem "pundit"
+# sample data
+gem 'faker'
+## Gemfile for Rails 3+, Sinatra, and Merb
+gem 'will_paginate', '~> 3.0.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
