@@ -1,5 +1,6 @@
 class WikisController < ApplicationController
-
+# use array pagination
+require 'will_paginate/array' 
 	before_action :set_wiki, only: [:show, :edit, :update, :destroy]
   def new
   	@wiki = Wiki.new
@@ -23,8 +24,8 @@ class WikisController < ApplicationController
   end
 
   def index
-  	@wikis = Wiki.all.paginate(page: params[:page], per_page: 20)
-    authorize @wikis
+  	@wikis = policy_scope(Wiki).paginate(page: params[:page], per_page: 15)
+   
   end
 
   def edit

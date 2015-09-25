@@ -1,9 +1,19 @@
-<div class="container">
+<div class="container text-center">
 	<div class="row">
 			<div class="jumbotron">
 				<h1>Welcome to Blocpedia</h1>
 				<h3>SaaS Wiki Collaboration Tool</h3>
 				<p>Build a production quality SaaS app that allows users to create their own wikis.</p>
+			  <% if !current_user %> 
+				<div class="row">
+					<div class="col-md-6">
+						<%= link_to "SIGN UP for FREE", new_user_registration_path, class: "btn btn-primary btn-block" %>
+					</div>
+					<div class="col-md-6">
+						<%= link_to "LOG IN", new_user_session_path, class: "btn btn-info btn-block" %>
+					</div>
+				</div>
+			   <% end %>
 			</div>
 	</div>
 </div>

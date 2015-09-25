@@ -1,5 +1,18 @@
 <%= content_tag :div, class: 'row' do %>
-	<div class="col-md-8">
-		<p><%= link_to wiki.title, wiki %></p>
+	<p><div class="col-md-8">
+		<%= link_to wiki.title, wiki %> 
 	</div>
+	<div class="col-md-2">
+		<% if wiki.private %>
+			<div class="btn btn-block btn-warning">Private</div>
+		<% end %>
+	</div>
+	<div class="col-md-2">
+		<% if policy(wiki).edit? %>
+			&nbsp&nbsp&nbsp&nbsp&nbsp| <i><%= link_to "EDIT", edit_wiki_path(wiki) %> </i>
+		<% end %>
+		<% if policy(wiki).destroy? %>
+			| <i><%= link_to "DELETE", wiki_path(wiki), method: :delete %> </i>|
+		<% end %>
+	</div></p>
 <% end %>

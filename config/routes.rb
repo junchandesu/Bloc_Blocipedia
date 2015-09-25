@@ -1,20 +1,15 @@
 Rails.application.routes.draw do
-  get 'wikis/new'
-
-  get 'wikis/show'
-
-  get 'wikis/index'
-
-  get 'wikis/edit'
 
   devise_for :users
   get 'welcome/index'
 
   resources :wikis
 
+  resources :charges, only: [:new, :create]
+  get 'charges/downgrade' 
   root 'welcome#index'
 
-  # The priority is based upon order of creation: first created -> highest priority.
+   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

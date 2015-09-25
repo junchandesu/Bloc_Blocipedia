@@ -14,4 +14,6 @@
 <% end %>
 <br/>
 <br/>
-<p><%= link_to "Create a new wiki", new_wiki_path, class: 'label label-info' %></p>
+<% if policy(@wiki).create? %>
+	<p><%= link_to "Create a new wiki", new_wiki_path, class: 'label label-info' %></p>
+<% end %>
