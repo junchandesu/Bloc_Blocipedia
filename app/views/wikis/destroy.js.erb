@@ -1,0 +1,5 @@
+<% if @wiki.destroyed? %> 
+$('#wiki-' +<%= @wiki.id %>).fadeOut("slow");
+<% else %>
+$('#wiki-' +<%= @wiki.id %>).prepend(<div class='alert alaer-danger'<%= flash[:error] %></div>");
+<% end %>

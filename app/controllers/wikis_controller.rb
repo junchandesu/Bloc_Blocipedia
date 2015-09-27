@@ -1,7 +1,8 @@
 class WikisController < ApplicationController
 # use array pagination
 require 'will_paginate/array' 
-	before_action :set_wiki, only: [:show, :edit, :update, :destroy]
+	before_action :set_wiki, only: [:show, :edit, :update]
+
   def new
   	@wiki = Wiki.new
     authorize @wiki
@@ -43,13 +44,20 @@ require 'will_paginate/array'
   end
 
   def destroy
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
   	if @wiki.destroy
-  		redirect_to wikis_path, notice: 'Wiki is deleted.'
+  		#redirect_to wikis_path, 
+      flash[:notice] = 'Wiki is deleted.'
   	else
   		flash[:error] = "Error deleting"
-  		redirect_to @wiki
+  		#redirect_to @wiki
   	end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 

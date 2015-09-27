@@ -2,7 +2,11 @@
 <h3>Titlte: <%= @wiki.title %></h3>
 <h3>Body: <%= markdown_to_html(@wiki.body) %></h3>
 <% if @wiki.private %>
-	<i>Private wiki</i>
+	<% if @wiki.user == current_user %> 
+				<div class="btn btn-block btn-warning">Private</div>
+		<% else %>
+			<div class="btn btn-block btn-warning">created by <%= @wiki.user.name %></div>		
+		<% end %>
 <% else %>
 	<i>publicly viewed wiki</i>
 <% end %>
@@ -16,4 +20,7 @@
 <br/>
 <% if policy(@wiki).create? %>
 	<p><%= link_to "Create a new wiki", new_wiki_path, class: 'label label-info' %></p>
+<% end %>
+<% if policy(@wiki).private? %>
+	<%= render 'collaborators/collaborator', locals: { wiki: @wiki} %>
 <% end %>
