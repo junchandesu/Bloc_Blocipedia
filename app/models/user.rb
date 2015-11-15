@@ -7,9 +7,7 @@ class User < ActiveRecord::Base
  has_many :collaborators
  has_many :wikis, through: :collaborators
  after_initialize :init
- def init
-  	self.role ||="standard"
-  end
+
 
   def standard?
   	role == 'standard'
@@ -22,4 +20,11 @@ class User < ActiveRecord::Base
   def admin?
   	role == 'admin'
   end
+
+  private
+    
+   def init
+    self.role ||="standard"
+  end
+
 end
